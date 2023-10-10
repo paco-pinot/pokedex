@@ -2,53 +2,65 @@ import "./main.css";
 import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
+import Loader from "../Loader/Loader";
 import axios from "axios";
-const cache = axios.create({
-    cache: true,
-  });
-function Main({data,setIdPokemon,idPokemon}) {
+
+
+
+function Main({ data, setIdPokemon, idPokemon }) {
   const [pokemon, setPokemon] = useState(null);
-  const [pokemonImages, setPokemonImages] = useState([]);
+  const [secondApiData, setSecondApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (idPokemon) {
-      cache.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}`)
-        .then((response) => {
-          setPokemon(response.data);
-          setPokemonImages([...pokemonImages, response.data.sprites.front_default]);
-          setIsLoading(false);
-        });
-    }
-  }, [idPokemon]);
+    const fetchDataFromSecondApi = async () => {
+      const secondApiDataArray = await Promise.all(
+        data.results.map(async (element) => {
+          const response = await axios.get(element.url);
+          return response.data;
+        })
+      );
 
+      setSecondApiData(secondApiDataArray);
+      setIsLoading(false)
+    };
+
+    fetchDataFromSecondApi();
+  }, [data.results]);
   if (isLoading) {
-    return (
-      <div>
-        <img src="https://i.imgur.com/2v2994b.gif" />
-      </div>
-    );
+    return <Loader/>
   }
-
   return (
     <>
-        <Navbar/>
-        <main>
-            {data.results.map((element, index) => {
-              setIdPokemon(index);
-              return (
-                <div key={`pokemon-${index}`}>
-                    <div className="imgPokemon">
-                        <img src={pokemonImages[index]} alt="" />
-                    </div>
-                    <div className="pokemonName">
-                        {index} {element.name}
-                    </div>
-                </div>
-              );
-            })}
-        </main>
-        <Footer/>
+      <Navbar />
+      <main>
+        {data.results.map((element, index) => {
+          setIdPokemon(index + 1);
+          const secondApiElementData = secondApiData[index];
+
+          return (
+            <div key={`pokemon-${index}`}>
+              <div className="imgPokemon">
+                {secondApiElementData && secondApiElementData.sprites && (
+                  <img src={secondApiElementData.sprites.front_default} alt="" />
+                )}
+              </div>
+              <div className="pokemonName">
+                {index + 1}. {element.name}
+                
+                {secondApiElementData && (
+                  <div>
+                    Height: {secondApiElementData.height}
+                    Weight: {secondApiElementData.weight}
+                    
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })}
+      </main>
+      <Footer />
     </>
   );
 }
