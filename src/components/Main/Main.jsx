@@ -7,8 +7,7 @@ import axios from "axios";
 
 
 
-function Main({ data, setIdPokemon, idPokemon }) {
-  const [pokemon, setPokemon] = useState(null);
+function Main({ data}) {
   const [secondApiData, setSecondApiData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -35,7 +34,6 @@ function Main({ data, setIdPokemon, idPokemon }) {
       <Navbar />
       <main>
         {data.results.map((element, index) => {
-          setIdPokemon(index + 1);
           const secondApiElementData = secondApiData[index];
 
           return (
