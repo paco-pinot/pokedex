@@ -1,0 +1,58 @@
+{
+    "types": {
+      "normal": {
+        "img": "/img/typesPokemon/normal.png"
+      },
+      "dragon": {
+        "img": "/img/typesPokemon/dragon.png"
+      },
+      "fire": {
+        "img": "/img/typesPokemon/fire.png"
+      },
+      "water": {
+        "img": "/img/typesPokemon/water.png"
+      },
+      "electric": {
+        "img": "/img/typesPokemon/electric.png"
+      },
+      "grass": {
+        "img": "/img/typesPokemon/grass.png"
+      },
+      "ice": {
+        "img": "/img/typesPokemon/ice.png"
+      },
+      "fighting": {
+        "img": "/img/typesPokemon/fighting.png"
+      },
+      "poison": {
+        "img": "/img/typesPokemon/poison.png"
+      },
+      "ground": {
+        "img": "/img/typesPokemon/ground.png"
+      },
+      "flying": {
+        "img": "/img/typesPokemon/flying.png"
+      },
+      "psychic": {
+        "img": "/img/typesPokemon/psychic.png"
+      },
+      "bug": {
+        "img": "/img/typesPokemon/bug.png"
+      },
+      "rock": {
+        "img": "/img/typesPokemon/rock.png"
+      },
+      "ghost": {
+        "img": "/img/typesPokemon/ghost.png"
+      },
+      "dark": {
+        "img": "/img/typesPokemon/dark.png"
+      },
+      "steel": {
+        "img": "/img/typesPokemon/steel.png"
+      },
+      "fairy": {
+        "img": "/img/typesPokemon/fairy.png"
+      }
+    }
+  }

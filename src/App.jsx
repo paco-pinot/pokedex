@@ -6,12 +6,13 @@ import Main from './components/Main/Main';
 import PokemonPage from './components/PokemonPage/PokemonPage';
 import Loader from './components/Loader/Loader';
 import axios from 'axios';
-
+import myData from "./data/myData.json"
 function App() {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [idPokemon, setIdPokemon] = useState('');
-  const [pokemon, setPokemon] = useState(null);
+  const [secondApiData, setSecondApiData] = useState([]);
+  const [isLoadingPokemon, setIsLoadingPokemon] = useState(true);
+  const [pokemonChoisi, setPokemonChoisi] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,21 +28,36 @@ function App() {
 
     fetchData();
   }, []);
+  useEffect(() => {
+    const fetchDataFromSecondApi = async () => {
+      const secondApiDataArray = await Promise.all(
+        data.results.map(async (element) => {
+          const response = await axios.get(element.url);
+          return response.data;
+        })
+      );
 
-  if (isLoading) {
-    return <Loader />;
+      setSecondApiData(secondApiDataArray);
+      setIsLoadingPokemon(false)
+    };
+
+    fetchDataFromSecondApi();
+  }, [data.results]);
+  if (isLoadingPokemon || isLoading) {
+    return <Loader/>
   }
+
 
   console.log(data);
 
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Main data={data} idPokemon={idPokemon} setIdPokemon={setIdPokemon} setPokemon={setPokemon} pokemon={pokemon} />,
+      element: <Main data={data} secondApiData={secondApiData} setPokemonChoisi={setPokemonChoisi} />,
     },
     {
       path: '/pokemon/:id',
-      element: <PokemonPage />,
+      element: <PokemonPage myData={myData} pokemonChoisi={pokemonChoisi} SecondApiData={secondApiData} data={data}/>,
     },
     {
       path: '*',

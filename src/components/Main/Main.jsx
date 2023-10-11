@@ -1,34 +1,9 @@
 import "./main.css";
-import { useEffect, useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import Loader from "../Loader/Loader";
-import axios from "axios";
+import { Link } from "react-router-dom";
+function Main({ data,secondApiData}) {
 
-
-
-function Main({ data}) {
-  const [secondApiData, setSecondApiData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchDataFromSecondApi = async () => {
-      const secondApiDataArray = await Promise.all(
-        data.results.map(async (element) => {
-          const response = await axios.get(element.url);
-          return response.data;
-        })
-      );
-
-      setSecondApiData(secondApiDataArray);
-      setIsLoading(false)
-    };
-
-    fetchDataFromSecondApi();
-  }, [data.results]);
-  if (isLoading) {
-    return <Loader/>
-  }
   return (
     <>
       <Navbar />
@@ -38,11 +13,14 @@ function Main({ data}) {
 
           return (
             <div key={`pokemon-${index}`}>
-              <div className="imgPokemon">
-                {secondApiElementData && secondApiElementData.sprites && (
-                  <img src={secondApiElementData.sprites.front_default} alt="" />
-                )}
-              </div>
+            <Link  state={{ secondApiElementData: secondApiElementData }} to={`/pokemon/${element.name}`} >
+                <div className="imgPokemon">
+                  {secondApiElementData && secondApiElementData.sprites && (
+                    <img src={secondApiElementData.sprites.front_default} alt="" />
+
+                  )}
+                </div>
+            </Link>
               <div className="pokemonName">
                 {index + 1}. {element.name}
                 
