@@ -2,7 +2,8 @@ import "./main.css";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
-function Main({ data,secondApiData}) {
+import PropTypes from 'prop-types';
+function Main({ data,secondApiData,descriptionPokemonAPI}) {
 
   return (
     <>
@@ -10,10 +11,12 @@ function Main({ data,secondApiData}) {
       <main>
         {data.results.map((element, index) => {
           const secondApiElementData = secondApiData[index];
-
           return (
             <div key={`pokemon-${index}`}>
-            <Link  state={{ secondApiElementData: secondApiElementData }} to={`/pokemon/${element.name}`} >
+            <Link to={`/pokemon/${element.name}`} state={{ 
+                  secondApiElementData: secondApiElementData, 
+                  descriptionPokemonAPI: descriptionPokemonAPI 
+                }}>
                 <div className="imgPokemon">
                   {secondApiElementData && secondApiElementData.sprites && (
                     <img src={secondApiElementData.sprites.front_default} alt="" />
@@ -41,4 +44,9 @@ function Main({ data,secondApiData}) {
   );
 }
 
+Main.propTypes = {
+  data: PropTypes.object.isRequired,
+  secondApiData: PropTypes.array.isRequired,
+  descriptionPokemonAPI: PropTypes.array.isRequired,
+};
 export default Main;

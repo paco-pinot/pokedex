@@ -1,23 +1,50 @@
 import "./pokemonPage.css";
 import { useParams, useLocation } from "react-router-dom";
 import Error from "../Error/Error";
+import PropTypes from 'prop-types';
 
 function PokemonPage({ data,myData }) {
   const { id } = useParams();
   const location = useLocation();
-  const secondApiElementData = location.state?.secondApiElementData;
+  // const secondApiElementData = location.state?.secondApiElementData;
+  const { secondApiElementData, descriptionPokemonAPI } = location.state;
   const pokemonChoisi = data.results.find((element) => element.name === id);
+  const selectedPokemonDescription = descriptionPokemonAPI.find((description) => description.name === id);
 
   return (
     <section>
       {pokemonChoisi ? (
         <div>
-          Name: {pokemonChoisi.name}
-          {/* Utilisez les données de la deuxième API ici */}
-          {secondApiElementData && (
+        <h3>{pokemonChoisi.name}</h3>
+
+          {secondApiElementData && descriptionPokemonAPI && (
             <div>
+            <div className="description">
+              Description  {selectedPokemonDescription.flavor_text_entries[5].flavor_text}
+            </div>
+            <p>
               Height: {secondApiElementData.height}
-              Weight: {secondApiElementData.weight}
+            </p>
+            <p>
+             Weight: {secondApiElementData.weight}
+            </p>
+            <p>
+              Id : {secondApiElementData.id}
+            </p>
+            <p>
+              Pokedex color : {selectedPokemonDescription.color.name}
+            </p>
+            <div>
+              Stats: {secondApiElementData.stats.map((element,index)=>{
+                return(
+                  <div className="stat" key={index}>
+                    base {element.stat.name} : {element.base_stat}
+                  </div>
+                )
+              })}
+            </div>
+             
+             
             <div className="imgPokemon">
               <img src={secondApiElementData.sprites.front_default} alt="" />
             </div>
@@ -42,5 +69,8 @@ function PokemonPage({ data,myData }) {
     </section>
   );
 }
-
+PokemonPage.propTypes = {
+  data: PropTypes.object.isRequired,
+  myData: PropTypes.object.isRequired,
+};
 export default PokemonPage;
