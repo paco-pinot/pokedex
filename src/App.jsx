@@ -8,62 +8,12 @@ import Loader from './components/Loader/Loader';
 import axios from 'axios';
 import myData from "./data/myData.json"
 function App() {
+  // const [cachedData, setCachedData] = useState(null);
   const [data, setData] = useState([]);
   const [secondApiData, setSecondApiData] = useState([]);
   const [descriptionPokemonAPI, setDescriptionPokemonAPI] = useState([]);
-  
+  const [selectedTypes, setSelectedTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
-
-
-// __________________API PRINCIPAL
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=649');
-  //       const data = response.data;
-  //       setData(data);
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
-  // //_________________ API POKEMON
-  // useEffect(() => {
-  //   const fetchDataFromSecondApi = async () => {
-  //     const secondApiDataArray = await Promise.all(
-  //       data.results.map(async (element) => {
-  //         const response = await axios.get(element.url);
-  //         return response.data;
-  //       })
-  //     );
-
-  //     setSecondApiData(secondApiDataArray);
-  //     console.log("second : " + secondApiData);
-  //     setIsLoadingPokemon(false)
-  //   };
-  //   fetchDataFromSecondApi();
-  // }, [data.results]);
-  // // _______________API DESCRIPTION POKEMON
-  // useEffect(() => {
-  //   const fetchDataFromDescriptionApi = async () => {
-  //     const descriptionPokemonApiArray = await Promise.all(
-  //       secondApiData.map(async (element) => {
-  //         const response = await axios.get(element.species.url);
-  //         return response.data;
-  //       })
-  //     );
-
-  //     setDescriptionPokemonAPI(descriptionPokemonApiArray);
-  //     console.log("description : " + descriptionPokemonApiArray);
-  //     setIsLoadingDescription(false)
-  //   };
-  //   fetchDataFromDescriptionApi();
-  // }, [secondApiData]);
-
 
 
   useEffect(() => {
@@ -73,7 +23,7 @@ function App() {
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=649');
         const data = response.data;
         setData(data);
-        
+
        // API POKEMON
         const secondApiDataArray = await Promise.all(
           data.results.map(async (element) => {
@@ -90,7 +40,14 @@ function App() {
           descriptionPokemonApiArray.push(response.data);
         }
         setDescriptionPokemonAPI(descriptionPokemonApiArray);
-
+        // API EVOLUTION
+        // const evoPokemonAPIArray = [];
+        // for (const element of descriptionPokemonApiArray) {
+        //   const response = await axios.get(element.evolution_chain.url);
+        //   evoPokemonAPIArray.push(response.data);
+        // }
+        // setEvoPokemonAPI(evoPokemonAPIArray);
+        // console.log(evoPokemonAPI)
         setIsLoading(false);
       } catch (error) {
         console.error(error);
@@ -113,10 +70,10 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Main descriptionPokemonAPI={descriptionPokemonAPI} data={data} secondApiData={secondApiData}  />,
+      element: <Main selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} myData={myData}  descriptionPokemonAPI={descriptionPokemonAPI} data={data} secondApiData={secondApiData}  />,
     },
     {
-      path: '/pokemon/:id',
+      path: '/pokemon/:name/:id',
       element: <PokemonPage myData={myData} data={data}/>,
     },
     {
