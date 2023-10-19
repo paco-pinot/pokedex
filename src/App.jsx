@@ -6,6 +6,7 @@ import Main from './components/Main/Main';
 import PokemonPage from './components/PokemonPage/PokemonPage';
 import Loader from './components/Loader/Loader';
 import axios from 'axios';
+import useSWR from 'swr'
 import myData from "./data/myData.json"
 function App() {
   // const [cachedData, setCachedData] = useState(null);
@@ -16,16 +17,15 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [Search, setSearch] = useState("");
 
-
   useEffect(() => {
     const fetchData = async () => {
-      // API PRINCIPAL
       try {
+        // API PRINCIPAL
         const response = await axios.get('https://pokeapi.co/api/v2/pokemon/?limit=649');
         const data = response.data;
         setData(data);
-
-       // API POKEMON
+  
+        // API POKEMON
         const secondApiDataArray = await Promise.all(
           data.results.map(async (element) => {
             const response = await axios.get(element.url);
@@ -33,22 +33,16 @@ function App() {
           })
         );
         setSecondApiData(secondApiDataArray);
-
-        // API DESCRIPTION
-        const descriptionPokemonApiArray = [];
-        for (const element of secondApiDataArray) {
-          const response = await axios.get(element.species.url);
-          descriptionPokemonApiArray.push(response.data);
-        }
+  
+        // API DESCRIPTION (récupération des descriptions ici)
+        const descriptionPokemonApiArray = await Promise.all(
+          secondApiDataArray.map(async (element) => {
+            const response = await axios.get(element.species.url);
+            return response.data;
+          })
+        );
         setDescriptionPokemonAPI(descriptionPokemonApiArray);
-        // API EVOLUTION
-        // const evoPokemonAPIArray = [];
-        // for (const element of descriptionPokemonApiArray) {
-        //   const response = await axios.get(element.evolution_chain.url);
-        //   evoPokemonAPIArray.push(response.data);
-        // }
-        // setEvoPokemonAPI(evoPokemonAPIArray);
-        // console.log(evoPokemonAPI)
+  
         setIsLoading(false);
       } catch (error) {
         console.error(error);

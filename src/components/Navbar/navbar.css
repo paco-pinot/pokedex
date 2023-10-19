@@ -1,11 +1,12 @@
 .nav_container {
-    height: 100vh;
+    height: 100dvh;
     position: fixed;
     left: -30vw;
     width: 30vw;
     background-color: white;
     transition: 0.3s;
     border-right: 2px solid black;
+    z-index: 3;
   }
   
   .nav_button {
@@ -20,6 +21,7 @@
     border-bottom-left-radius: 0;
     background-color: #FF6B6B;
     transition: 0.3s;
+    z-index: 1;
   }
   
   .nav_container:hover {
@@ -77,3 +79,77 @@
     box-shadow: 0 0 0 5px gold;
     border-radius: 10px;
   }
+  .nav_button .line{
+    display: none;
+  }
+
+
+/* ALL */
+    @media (max-width: 800px){
+        .nav_button{
+            top: 0;
+            left: 0;
+            width: 10vw;
+            height: 10vw;
+            margin-top: 10%;
+            margin-left: 10px;
+            border-radius: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10%;
+            background-color: white;
+            border: solid #FF6B6B 1px;
+            border-radius: 5px;
+        }
+        .nav_button .line{
+            display: block;
+            width: 70%;
+            height: 10%;
+            background-color: #FF6B6B;
+        }
+        .nav_button:hover .line{
+            display: none;
+        }
+        .nav_button:hover{
+            border: none;
+        }
+        .types_button_container{
+            overflow-y: auto;
+            height: 50dvh;
+            width: 70%;
+        }
+        .img_navbar{
+            width: 60%;
+            height: 20%;
+            margin-top: 1em;
+        }
+        .type_navbar:hover .nav_button{
+            background-color: transparent;
+            border: none;
+        }
+        .type_navbar:hover .line{
+            display: none;
+        }
+        
+    }
+/* TABLETTES */
+    @media (min-width: 701px) and (max-width: 1000px) {
+        .nav_button{
+            width: 7vw;
+            height: 7vw;
+            margin-top: 5%;
+        }
+        .nav_container{
+            left: -50vw;
+        }
+
+    }
+/* TELEPHONE */
+    @media (max-width: 700px){
+        .nav_container {
+            width: 50vw;
+            left: -60vw;
+        }
+    }

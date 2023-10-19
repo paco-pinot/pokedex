@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Error from '../Error/Error';
 import PropTypes from 'prop-types';
 import "./pokemonPage.css"
@@ -18,6 +19,9 @@ function PokemonPage({ data, myData }) {
     <section className="section_pokemon_page">
       {pokemonChoisi ? (
         <div className="pokemon_page_container">
+        <Link to={"/"}>
+          <div className="backHome">Back</div>
+        </Link>
           <div className="top_page_pokemon">
             <div className="name_pokemon">
               <img

@@ -21,7 +21,11 @@ function Navbar({ setSelectedTypes, selectedTypes,recherche }) {
   return (
     <nav>
       <div className="nav_container">
-        <div className="nav_button"></div>
+        <div className="nav_button">
+          <div className="line"></div>
+          <div className="line"></div>
+          <div className="line"></div>
+        </div>
         <div className="container_nav">
           <div className="img_navbar">
             <img src="/img/pokemon_logo.png" alt="" />

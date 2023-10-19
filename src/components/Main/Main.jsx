@@ -4,10 +4,13 @@ import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 function Main({ data,secondApiData,descriptionPokemonAPI,evoPokemonAPI,setSelectedTypes,selectedTypes,setSearch,Search}) {
+
+// fonction de recherche sur l'input dans la navbar
   let recherche =(e)=>{
     console.log(e.target.value);
     setSearch(e.target.value)
 }
+// les 2 data combiné
 const combinedData = data.results.map((element, index) => {
   const secondApiElementData = secondApiData[index];
   return {
@@ -15,24 +18,21 @@ const combinedData = data.results.map((element, index) => {
     secondApiData: secondApiElementData,
   };
 });
+//  fonction filtres en fonction des types
 const filterBySelectedTypes = (pokemon, selectedTypes) => {
   if (selectedTypes.length === 0) {
     return true;
   }
-
-
   let typeMatches = 0;
-
   for (const type of pokemon.types) {
     if (selectedTypes.includes(type.type.name)) {
       typeMatches++;
     }
   }
-
-
   return typeMatches === selectedTypes.length;
 };
 
+// Tableau filtré avec la recherche + les types
 const filteredData = combinedData.filter((element) => {
 
   const nameMatch = element.name.toLowerCase().includes(Search.toLowerCase());
@@ -50,18 +50,18 @@ const filteredData = combinedData.filter((element) => {
         {filteredData.map((element, index) => {
           return (
             <div className="pokemon_main" key={`pokemon-${index}`}>
-              <div className="pokemonName">
-                {element.secondApiData.id}. {element.name}
-              </div>
-              <div className="imgPokemon">
                 <Link to={`/pokemon/${element.name}/${element.secondApiData.id}`} state={{ 
                   secondApiElementData: element.secondApiData, 
                   descriptionPokemonAPI: descriptionPokemonAPI,
                   evoPokemonAPI: evoPokemonAPI,
                 }}>
-                  <img src={element.secondApiData.sprites.versions['generation-v']['black-white'].front_default} alt="" />
-                </Link>
+              <div className="pokemonName">
+                {element.secondApiData.id}. {element.name}
               </div>
+              <div className="imgPokemon">
+                  <img src={element.secondApiData.sprites.versions['generation-v']['black-white'].front_default} alt="" />
+              </div>
+                </Link>
             </div>
           );
         })}
