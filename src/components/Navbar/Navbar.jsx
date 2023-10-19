@@ -1,7 +1,7 @@
 import "./navbar.css";
 import myData from "../../data/myData.json";
 import PropTypes from 'prop-types';
-function Navbar({ setSelectedTypes, selectedTypes }) {
+function Navbar({ setSelectedTypes, selectedTypes,recherche }) {
   const handleTypeClick = (type) => {
    
     if (selectedTypes.includes(type)) {
@@ -28,7 +28,7 @@ function Navbar({ setSelectedTypes, selectedTypes }) {
           </div>
           <div className="title_type_button">Search by name</div>
           <div className="search_bar">
-            <input type="text" />
+            <input onInput={(e) => recherche(e)} type="text" />
           </div>
           <div className="title_type_button">Search by types</div>
           <div className="types_button_container">
@@ -50,6 +50,6 @@ function Navbar({ setSelectedTypes, selectedTypes }) {
 Navbar.propTypes = {
   setSelectedTypes: PropTypes.func.isRequired, 
   selectedTypes: PropTypes.array.isRequired,
- 
+  recherche: PropTypes.func.isRequired, 
 };
 export default Navbar;

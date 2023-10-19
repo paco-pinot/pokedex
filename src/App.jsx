@@ -14,6 +14,7 @@ function App() {
   const [descriptionPokemonAPI, setDescriptionPokemonAPI] = useState([]);
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [Search, setSearch] = useState("");
 
 
   useEffect(() => {
@@ -70,7 +71,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <Main selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} myData={myData}  descriptionPokemonAPI={descriptionPokemonAPI} data={data} secondApiData={secondApiData}  />,
+      element: <Main setSearch={setSearch} Search={Search} selectedTypes={selectedTypes} setSelectedTypes={setSelectedTypes} myData={myData}  descriptionPokemonAPI={descriptionPokemonAPI} data={data} secondApiData={secondApiData}  />,
     },
     {
       path: '/pokemon/:name/:id',
