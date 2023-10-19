@@ -15,17 +15,39 @@ const combinedData = data.results.map((element, index) => {
     secondApiData: secondApiElementData,
   };
 });
+const filterBySelectedTypes = (pokemon, selectedTypes) => {
+  if (selectedTypes.length === 0) {
+    return true;
+  }
 
-// Dans votre composant, filtrez et affichez les résultats
-const filteredResults = combinedData.filter((pkmn) => {
-  return Search.toLowerCase() === "" ? pkmn : pkmn.name.toLowerCase().startsWith(Search);
+
+  let typeMatches = 0;
+
+  for (const type of pokemon.types) {
+    if (selectedTypes.includes(type.type.name)) {
+      typeMatches++;
+    }
+  }
+
+
+  return typeMatches === selectedTypes.length;
+};
+
+const filteredData = combinedData.filter((element) => {
+
+  const nameMatch = element.name.toLowerCase().includes(Search.toLowerCase());
+
+
+  const typesMatch = filterBySelectedTypes(element.secondApiData, selectedTypes);
+
+  return nameMatch && typesMatch;
 });
   return (
     <>
     <Navbar recherche={recherche} setSelectedTypes={setSelectedTypes} selectedTypes={selectedTypes} />
     <main>
       <div className="container_main">
-        {filteredResults.map((element, index) => {
+        {filteredData.map((element, index) => {
           return (
             <div className="pokemon_main" key={`pokemon-${index}`}>
               <div className="pokemonName">
