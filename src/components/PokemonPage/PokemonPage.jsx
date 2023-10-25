@@ -74,7 +74,8 @@ function PokemonPage({ data, myData }) {
                   {secondApiElementData.stats.map((element, index) => {
                     return (
                       <div className="stat" key={index}>
-                        base {element.stat.name} : {element.base_stat}
+                        <div className="title_stat"> base {element.stat.name}</div>
+                        <div className="stat_number"> {element.base_stat} </div> 
                       </div>
                     );
                   })}

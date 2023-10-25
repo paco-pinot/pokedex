@@ -32,7 +32,10 @@ function Navbar({ setSelectedTypes, selectedTypes,recherche }) {
           </div>
           <div className="title_type_button">Search by name</div>
           <div className="search_bar">
-            <input onInput={(e) => recherche(e)} type="text" />
+          <div className="pokeball_pixel">
+            <img src="/img/pokeball-pixel.png" alt="" />
+          </div>
+            <input placeholder="Search your pokemon" onInput={(e) => recherche(e)} type="text" />
           </div>
           <div className="title_type_button">Search by types</div>
           <div className="types_button_container">

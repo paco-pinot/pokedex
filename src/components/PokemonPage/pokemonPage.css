@@ -1,8 +1,10 @@
 .backHome{
+    font-family: 'Press Start 2P';
+    font-size: small;
     position: fixed;
     top: 5%;
     left: 2%;
-    background-color: #FF6B6B;
+    background-color: #FF1C1C;
     border-radius: 10px;
     width: 100px;
     height: 50px;
@@ -10,13 +12,13 @@
     align-items: center;
     justify-content: center;
     color: aliceblue;
-    border: solid 3px aliceblue;
+    border: solid 3px black;
     transition: .3s;
 }
 .backHome:hover{
-    background-color: aliceblue;
-    color: #FF6B6B;
-    border: solid 3px #FF6B6B;
+    background-color: white;
+    color: black;
+    border: solid 3px black;
     transform: scale(1.03);
 
 }
@@ -26,8 +28,8 @@
 }
 .section_pokemon_page{
     color: black;
-    background-color: #FF6B6B;
-    background-image: url('/img/bg3.jpg');
+    background-color: #1D2C5E;
+
     background-size: contain;
     /* background-image: url('/img/flamme3.jpg'); */
     background-size: cover;
@@ -51,7 +53,9 @@
 }
 .bottom_page_pokemon{
     padding: 1em;
-    background-color: aliceblue;
+    background-color: #5892bf81;
+    margin-left: 2%;
+    margin-right: 2%;
     border-radius: 10px;
     padding: 2em;
 }
@@ -59,8 +63,7 @@
     
     display: flex;
     gap: 2em;
-    background-size: cover;
-    width: 100%;
+    /* width: 100%; */
 }
 .border_gold_img_pkmn{
     /* border: 5px gold solid;
@@ -100,9 +103,10 @@
     align-items: center;
     gap: 10px;
     padding-left: 1%;
+    color: white;
 }
 .idPkmn_page{
-    color: #FF6B6B;
+    color: black;
 }
 .type_pokemon{
     display: flex;
@@ -111,6 +115,8 @@
 .typeImg{
     width: 10vw!important;
     height: 2em;
+    box-shadow: 0 0 0 5px gold;
+    border-radius: 16px;
 }
 .typeImg img{
     width: 100%;
@@ -156,9 +162,25 @@
     flex-wrap: wrap;
     gap: 1em;
     text-transform: capitalize;
-
+    align-items: center;
+    justify-content: center;
+    width: 100%;
 }
-
+.stat{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    width: 20vw;
+    background-color: aliceblue;
+    color: black;
+    border-radius: 10px;
+    box-shadow: 0 0 0 5px gold;
+}
+.title_stat{
+    font-weight: bold;
+}
 /* _________________MEDIA QUERIES___________ */
 /* ALL  */
 @media (max-width: 800px){

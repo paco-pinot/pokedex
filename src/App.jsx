@@ -34,7 +34,7 @@ function App() {
         );
         setSecondApiData(secondApiDataArray);
   
-        // API DESCRIPTION (récupération des descriptions ici)
+        // API DESCRIPTION 
         const descriptionPokemonApiArray = await Promise.all(
           secondApiDataArray.map(async (element) => {
             const response = await axios.get(element.species.url);

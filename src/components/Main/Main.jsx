@@ -46,6 +46,9 @@ const filteredData = combinedData.filter((element) => {
     <>
     <Navbar recherche={recherche} setSelectedTypes={setSelectedTypes} selectedTypes={selectedTypes} />
     <main>
+    <div className="title_main">
+      <img src="/img/pokemon_logo.png" alt="" />
+    </div>
       <div className="container_main">
         {filteredData.map((element, index) => {
           return (
