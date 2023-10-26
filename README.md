@@ -1,6 +1,6 @@
 # Pokédex App
 
-Pokédex App is a web application built with React and Vite. It utilizes the PokeAPI (https://pokeapi.co/api/v2/) to display information about Pokémon, with features like sorting by type, searching by name, and detailed information pages for each Pokémon. The application is also responsive, ensuring an optimal user experience on various devices.
+Pokédex App is a web application built with React and Vite. It utilizes the PokeAPI (https://pokeapi.co/) to display information about Pokémon, with features like sorting by type, searching by name, and detailed information pages for each Pokémon. The application is also responsive, ensuring an optimal user experience on various devices.
 
 ## Features
 
