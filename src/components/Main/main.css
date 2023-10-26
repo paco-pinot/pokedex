@@ -1,9 +1,4 @@
-html{
-    background-image: url('/img/wallpaper4.png');
-    background-size: contain;
-    background-color: #0E3F5F;
-    height: 100%;
-}
+
 .container_main{
     padding-top: 10dvh;
     display: flex;
@@ -22,6 +17,7 @@ html{
 }
 .pokemon_main{
     font-family: 'Press Start 2P';
+    font-size: 1.5vw;
     text-align: center;
     width: 20vw;
     height: 20vw;
@@ -40,7 +36,9 @@ html{
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 1em;
+    gap: 0.5em;
+    margin-left: 1%;
+    margin-right: 1%;
 }
 .pokemon_main:hover{
     transform: scale(1.05);
@@ -64,6 +62,9 @@ html{
     width: 50%;
     height: 100%;
 }
+.stat_number{
+    color: blue;
+}
  /* TABLETTES */
 @media (min-width: 701px) and (max-width: 1000px) {
 
@@ -75,10 +76,10 @@ html{
         height: 30vw;
     }
     .pokemon_main a{
-        gap: 10px;
-
+        gap: 0;
     }
     .pokemonName{
-        font-size: small;
+        font-size: 2.2vw;
     }
+
 }

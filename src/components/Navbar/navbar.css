@@ -5,7 +5,6 @@
     width: 30vw;
     background-color: #1D2C5E;
     transition: 0.3s;
-    border-right: 2px solid white;
     color: white;
     z-index: 3;
     font-family: 'Press Start 2P';
@@ -29,10 +28,12 @@
   
   .nav_container:hover {
     left: 0;
+    border-right: 2px solid white;
+
   }
   
   .nav_container:hover .nav_button {
-    left: 30vw;
+    left: -30vw;
     background-color: transparent;
   }
     .container_nav{
@@ -122,7 +123,7 @@
             align-items: center;
             justify-content: center;
             gap: 10%;
-            background-color: white;
+            background-color: #1D2C5E;
             border: solid #FF6B6B 1px;
             border-radius: 5px;
         }

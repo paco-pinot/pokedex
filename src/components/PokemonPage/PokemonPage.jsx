@@ -14,7 +14,15 @@ function PokemonPage({ data, myData }) {
   );
 
   const [hovered, setHovered] = useState(secondApiElementData.sprites.front_default);
-
+  
+  // conversion en metre
+  function convertToMeters(value) {
+    return value / 10;
+  }
+  // conversion kg
+  function convertToKilograms(value) {
+    return value / 10;
+  }
   return (
     <section className="section_pokemon_page">
       {pokemonChoisi ? (
@@ -62,8 +70,8 @@ function PokemonPage({ data, myData }) {
                   })}
                 </div>
                 <div className="poid_taille_pokemon">
-                  <p> Height : <span> {secondApiElementData.height}m</span></p>
-                  <p> Weight : <span> {secondApiElementData.weight}g</span></p>
+                  <p> Height : <span> {convertToMeters(secondApiElementData.height)}m</span></p>
+                  <p> Weight : <span> {convertToKilograms(secondApiElementData.weight)}kg</span></p>
                 </div>
                 <div className="description_pokemon">
                   {selectedPokemonDescription === undefined

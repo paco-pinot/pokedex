@@ -42,6 +42,7 @@ const filteredData = combinedData.filter((element) => {
 
   return nameMatch && typesMatch;
 });
+
   return (
     <>
     <Navbar recherche={recherche} setSelectedTypes={setSelectedTypes} selectedTypes={selectedTypes} />

@@ -18,10 +18,11 @@ function Navbar({ setSelectedTypes, selectedTypes,recherche }) {
     return selectedTypes.includes(type) ? "type_navbar type_actif" : "type_navbar";
   };
 
+
   return (
     <nav>
-      <div className="nav_container">
-        <div className="nav_button">
+       <div className="nav_container">
+       <div className="nav_button" >
           <div className="line"></div>
           <div className="line"></div>
           <div className="line"></div>

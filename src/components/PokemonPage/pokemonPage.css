@@ -6,8 +6,8 @@
     left: 2%;
     background-color: #FF1C1C;
     border-radius: 10px;
-    width: 100px;
-    height: 50px;
+    width: 7vw;
+    height: 4vw;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -29,9 +29,7 @@
 .section_pokemon_page{
     color: black;
     background-color: #1D2C5E;
-
     background-size: contain;
-    /* background-image: url('/img/flamme3.jpg'); */
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -63,11 +61,8 @@
     
     display: flex;
     gap: 2em;
-    /* width: 100%; */
 }
 .border_gold_img_pkmn{
-    /* border: 5px gold solid;
-    border-radius: 10px; */
     height: 90%;
     width: 20vw;
 }
@@ -88,16 +83,13 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-    /* align-items: center; */
     justify-content: center;
     width: 60%;
 }
 .name_pokemon{
     text-transform: capitalize;
-    /* background-color: #F8F8C0; */
     border-radius: 10px;
     font-size: 10vw;
-    /* height: 3vw; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -129,7 +121,6 @@
 .poid_taille_pokemon{
     display: flex;
     gap: 1em;
-    /* justify-content: center; */
     align-items: center;
 }
 .poid_taille_pokemon p span{
@@ -163,7 +154,7 @@
     gap: 1em;
     text-transform: capitalize;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     width: 100%;
 }
 .stat{
@@ -171,8 +162,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
     gap: 5px;
     width: 20vw;
+    height: 8vw;
     background-color: aliceblue;
     color: black;
     border-radius: 10px;
@@ -200,6 +193,9 @@
     .description_pokemon{
         text-align: center;
     }
+    .stats_pokemon{
+        justify-content: center;
+    }
 }
  /* TABLETTES */
  @media (min-width: 701px) and (max-width: 1000px) {
@@ -208,6 +204,11 @@
     }
     .typeImg{
         width: 20vw!important;
+    }
+    .backHome{
+        width: 70px;
+        height: 50px;
+        font-size: smaller;
     }
  }
   /* TELEPHONE */
@@ -225,5 +226,14 @@
     .backHome{
         width: 70px;
         height: 50px;
+        font-size: 10px;
+    }
+
+    .stat{
+        width: 50vw;
+        height: 13vw;
+    }
+    .title_stat{
+        font-size: small;
     }
  }
