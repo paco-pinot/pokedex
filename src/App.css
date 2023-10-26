@@ -5,9 +5,8 @@ html, body {
 }
 
 html {
-  background: url('/img/wallpaper4.png') no-repeat;
+  background: url('/img/wallpaper4.png') ;
   background-size: cover;
-  background-attachment: fixed;
 }
 
 body {
